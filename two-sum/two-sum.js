@@ -4,14 +4,13 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) { 
-    let index = 0
-    while (index <= nums.length -1){
-        let num = nums[index]
-        let diff = target - num
-        let diffIndex = nums.findIndex((element, i) => element === diff && i !== index)
-        if(diffIndex !== -1){
-            return [index,diffIndex]
-        }
-        index++
+    const map = {};
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map[complement] !== undefined) {
+      return [map[complement], i];
     }
+    map[nums[i]] = i;
+  }
+  return [];
 };
