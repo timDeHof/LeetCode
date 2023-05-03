@@ -3,6 +3,17 @@
  * @return {number}
  */
 var average = function(salary) {
-    const sortedSalarySum = salary.sort((a,b) => a-b).slice(1,salary.length-1)
-    return sortedSalarySum.reduce((acc, current) => acc + current, 0) / sortedSalarySum.length
+    let minSalary = salary[0]
+    let maxSalary = salary[0]
+    let sum = 0
+    for (let i = 0; i < salary.length; i++){
+        if(salary[i] < minSalary){
+            minSalary = salary[i]
+        }
+        if(salary[i] > maxSalary){
+            maxSalary = salary[i]
+        }
+        sum += salary[i]
+    }
+    return (sum - minSalary - maxSalary) / (salary.length - 2)
 }    
