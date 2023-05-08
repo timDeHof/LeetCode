@@ -12,15 +12,21 @@ var matrixReshape = function(mat, r, c) {
         return mat // return the original matrix if the reshape operation is not possible
     }
 
-    let flat = mat.flat()
-    let res = []
+    let res = new Array(r);
+    let row = 0, col = 0;
 
-    for (let i = 0; i < r; i++){
-        let row =[]
-        for (let j = 0; j < c; j++){
-            row.push(flat[i* c + j])
+    for (let i = 0; i < m; i++){
+        for (let j = 0; j < n; j++){
+            if ( col === 0){
+                res[row] = new Array(c)
+            }
+            res[row][col] = mat[i][j]
+            col++
+            if (col === c){
+                row++
+                col = 0
+            }
         }
-        res.push(row)
     }
     return res
 };
